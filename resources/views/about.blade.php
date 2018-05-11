@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <title>Titre de la page</title>
+    <meta charset="utf-8">
+    <title>blog</title>
 </head>
 <body>
-<h1>About us</h1>
+<h1>About Us</h1>
 </body>
 </html>

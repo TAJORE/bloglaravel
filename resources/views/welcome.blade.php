@@ -1,9 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <title>Titre de la page</title>
+    <meta charset="utf-8">
+    <title>blog</title>
 </head>
 <body>
-   <h1>hello world</h1>
+<ul>
+    <?php foreach($tasks as $task) : ?>
+    <li><?= $task; ?></li>
+    <?php endforeach;  ?>
+</ul>
 </body>
 </html>
