@@ -1,10 +1,9 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>blog</title>
-</head>
-<body>
-<h1>{{ $task->body }}</h1>
-</body>
-</html>
+
+@extends('layouts.master')
+
+
+@section('content')
+    <h1>A place to show the post.</h1>
+
+@endsection
+
