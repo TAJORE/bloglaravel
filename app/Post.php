@@ -10,9 +10,13 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    protected $fillable = [
+        'title', 'body'
+    ];
 
     public function addComment($body)
     {
         $this->comments()->create(compact('body'));
     }
+
 }

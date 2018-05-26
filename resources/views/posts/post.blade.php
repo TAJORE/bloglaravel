@@ -8,7 +8,5 @@
         {{$post->created_at->toFormattedDateString()}}
     </p>
 
-
-
     {{ $post->body }}
 </div>
