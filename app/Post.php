@@ -22,4 +22,21 @@ class Post extends Model
         $this->comments()->create(compact('body'));
     }
 
+    public function scopeFilter($query, $filters){
+
+        //$posts = Post::latest();
+
+        //if($month = request('month')){
+        //   $posts->whereMonth('create_at', Carbon::parse($month)->month);
+        //}
+
+        //if($year = request('year')){
+        //     $posts->whereYear('create_at', $year);
+        //}
+
+        //$posts = $posts->get();
+
+
+    }
+
 }

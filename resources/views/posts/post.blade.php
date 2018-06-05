@@ -5,6 +5,7 @@
         </a>
     </h2>
     <p class="blog-post-meta">
+        name
         {{$post->created_at->toFormattedDateString()}}
     </p>
 

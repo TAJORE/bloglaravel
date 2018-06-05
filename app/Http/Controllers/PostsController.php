@@ -4,19 +4,44 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Post;
-
+use Carbon\Carbon;
 
 class PostsController extends Controller
 {
-    public function index(){
-        $posts = Post::latest()->get();
 
-        return view('posts.index',compact('posts'));
+    public function __construct(){
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+    public function index(){
+
+        $posts = Post::latest()
+            ->filter(request(['month', 'year']))
+            ->get();
+
+        //$posts = Post::latest();
+
+        //if($month = request('month')){
+         //   $posts->whereMonth('create_at', Carbon::parse($month)->month);
+        //}
+
+        //if($year = request('year')){
+       //     $posts->whereYear('create_at', $year);
+        //}
+
+        //$posts = $posts->get();
+
+       $archives = Post::selectRaw('YEAR(created_at) YEAR, monthname(created_at) month, COUNT(*) published')
+           ->groupBy('year','month')
+           ->orderByRaw('min(created_at) desc')
+           ->get()
+           ->toArray();
+
+        return view('posts.index',compact('posts', 'archives'));
     }
 
     public function show(Post $post){
 
-        return view('posts.show', compact('post'));
+        return view('posts.show', compact('post', 'archives'));
     }
 
     public function create(){
@@ -32,7 +57,11 @@ class PostsController extends Controller
             'body'=>'required',
         ]);
 
-        Post::create(request(['title','body']));
+        auth()->user()->publish(
+
+        new Post(request(['title','body']))
+        );
+
 
         return redirect('/');
     }

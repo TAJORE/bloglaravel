@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 
-
     <title>Album example for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
