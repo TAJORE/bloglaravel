@@ -27,13 +27,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function post(){
+    // A user has many posts
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 
-    public function publish(Post $post){
-
-       $this->posts()->save($post);
-
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
+
+    public function publish(Post $post)
+    {
+        $this->posts()->save($post);
+    }
+
 }

@@ -1,13 +1,13 @@
 <div class="blog-post">
     <h2 class="blog-post-title">
-        <a href="/posts/{{$post->id}}">
-        {{ $post->title }}
+        <a href="/posts/{{ $post->id }}">
+            {{ $post->title }}
         </a>
     </h2>
     <p class="blog-post-meta">
-        name
-        {{$post->created_at->toFormattedDateString()}}
+        by {{ $post->user->name }}
+        on {{ $post->created_at->toDayDateTimeString() }}
     </p>
 
     {{ $post->body }}
-</div>
+</div><!-- /.blog-post -->
