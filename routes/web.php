@@ -5,7 +5,7 @@ Route::get('/posts/create','postsController@create');
 Route::post('/posts','postsController@store');
 Route::get('/posts/{post}','postsController@show');
 
-Route::post('/posts/{post}/comments','CommentsController@store');
+Route::post('/posts/{post}/comment','CommentsController@store');
 Route::get('/register', 'RegistrationController@create');
 Route::post('/register', 'RegistrationController@store');
 Route::get('/login', 'SessionsController@create');

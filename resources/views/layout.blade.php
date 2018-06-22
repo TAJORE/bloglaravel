@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>My Application</title>
+    <title>My Blog</title>
 </head>
 
 <body>
