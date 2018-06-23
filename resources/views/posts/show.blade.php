@@ -1,46 +1,81 @@
-
 @extends('layouts.master')
 
-
 @section('content')
+
+
     <div class="col-sm-8 blog-main">
-        <h1>{{$post->title}}</h1>
 
-        {{$post->body}}
+
+        <div class="blog-post">
+            <h2 class="blog-post-title">
+                {{ $post->title }}
+            </h2>
+            <p class="blog-post-meta">
+                by {{ $post->user->name }}
+                on {{ $post->created_at->toDayDateTimeString() }}
+            </p>
+
+            {{ $post->body }} <br>
+
+            @if($post->user->id == auth()->id())
+                <a href="/posts/{{ $post->id }}/edit" class="btn btn-primary">Edit</a>
+                <a href="/posts/{{ $post->id }}/delete" class="btn btn-danger">Delete</a>
+            @endif
+        </div><!-- /.blog-post -->
+        
         <hr>
-<div class="comments">
-    <ul class="list-group">
-    @foreach($post->comments as $comment)
-       <li class="list-group-item">
 
-           <strong>
-               {{$comment->created_at->diffforHumans()}}: &nbsp;
-           </strong>
+        <div class="comments">
+            <ul class="list-group">
+                @foreach($post->comments as $comment)
+                    <li class="list-group-item">
+                        {{ $comment->body }}
+                        <strong>
+                            {{ $comment->created_at->diffForHumans() }}: &nbsp;
+                        </strong>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
 
-            {{$comment->body}}
+        <hr>
 
-       </li>
-    @endforeach
-    </ul>
-</div>
         <div class="card">
-            <div class="card-block">
-                <form method="POST" action="/posts/{{$post->id}}/comments">
-                    {{csrf_field()}}
-                    <div class="form-group">
-                        <textarea name="body"    placeholder="your comment here." class="form-control" required>
+            <div class="card-bloc">
+                <form method="post" action="/posts/{{ $post->id }}/comments">
 
-                        </textarea>
-                    </div>
+                    {{ csrf_field() }}
+
                     <div class="form-group">
-                        <button type="submit" class="btn-primary">Add Comment</button>
+                        <textarea name="body" id="" cols="30" rows="1" placeholder="Your comment here." class="form-control"></textarea>
                     </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Add comment</button>
+                    </div>
+
                 </form>
+
                 @include('layouts.errors')
             </div>
         </div>
 
-    </div>
-
+    </div><!-- /.blog-main -->
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

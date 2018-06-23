@@ -65,6 +65,22 @@ class PostsController extends Controller
 
         return redirect('/');
     }
+
+    public function edit($id)
+    {
+        $post = \App\Post::find($id);
+        return view('posts.edit', compact('post', 'id'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+        $post= \App\Post::find($id);
+        $post->title=$request->get('title');
+        $post->body=$request->get('body');
+        $post->save();
+        return redirect('/');
+    }
 }
 class TestController extends Controller
 {
