@@ -81,6 +81,17 @@ class PostsController extends Controller
         $post->save();
         return redirect('/');
     }
+
+    public function destroy($id)
+    {
+        //
+        $post = \App\Post::find($id);
+        $post->delete();
+        session()->flash(
+            'message', 'Post has been  deleted'
+        );
+        return redirect('/');
+    }
 }
 class TestController extends Controller
 {
